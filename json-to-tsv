@@ -1,0 +1,22 @@
+#!/usr/bin/env python3
+import json
+import sys
+
+col_names = set()
+data = json.load(sys.stdin)
+
+# Get all field names
+for row in data:
+    for col_name in row.keys():
+        col_names.add(col_name)
+
+print("\t".join(col_names))
+
+for row in data:
+    fields = []
+    for col_name in col_names:
+        if col_name in row:
+            fields.append(row[col_name])
+        else:
+            fields.append("")
+    print("\t".join(fields))
